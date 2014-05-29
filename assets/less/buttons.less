@@ -1,0 +1,180 @@
+/* Buttons */
+
+table.button,
+table.tiny-button,
+table.small-button,
+table.medium-button,
+table.large-button {
+  width: @buttonSize;
+  /* Overflow to visible fixes button breaking on mobile views with a border applied */
+  overflow: visible;
+}
+
+table.button td,
+table.tiny-button td,
+table.small-button td,
+table.medium-button td,
+table.large-button td {
+  display: block;
+  width: auto !important;
+  text-align: center;
+  background: @buttonColor;
+  /* border causes buttons to break on mobile views, unless overflow is set to visible */
+  border: @buttonBorder;
+  color: @buttonTextColor;
+  padding: 8px 0;
+}
+
+table.tiny-button td {
+  padding: 2px 0 4px;
+}
+
+table.small-button td {
+  padding: 7px 0 7px;
+}
+
+table.medium-button td {
+  padding: 10px 0 10px;
+}
+
+table.large-button td {
+  padding: 17px 0 18px;
+}
+
+table.button td a,
+table.tiny-button td a,
+table.small-button td a,
+table.medium-button td a,
+table.large-button td a {
+  font-weight: @buttonWeight;
+  text-decoration: none;
+  font-family: @buttonText;
+  color: @buttonLinkColor;
+  font-size: @fontSizeMedium;
+}
+
+table.tiny-button td a {
+  font-size: @fontSizeTiny;
+  font-weight: normal;
+}
+
+table.small-button td a {
+  font-size: @fontSizeSmall;
+}
+
+table.medium-button td a {
+  font-size: @fontSizeMedium;
+}
+
+table.large-button td a {
+  font-size: @fontSizeLarge;
+}
+
+table.button:hover td,
+table.button:visited td,
+table.button:active td {
+  background: @buttonHoverColor !important;
+}
+
+table.button:hover td a,
+table.button:visited td a,
+table.button:active td a {
+  color: @buttonLinkHoverColor !important;
+}
+
+table.button:hover td,
+table.tiny-button:hover td,
+table.small-button:hover td,
+table.medium-button:hover td,
+table.large-button:hover td {
+  background: @buttonHoverColor !important;
+}
+
+table.button:hover td a,
+table.button:active td a,
+table.button td a:visited,
+table.tiny-button:hover td a,
+table.tiny-button:active td a,
+table.tiny-button td a:visited,
+table.small-button:hover td a,
+table.small-button:active td a,
+table.small-button td a:visited,
+table.medium-button:hover td a,
+table.medium-button:active td a,
+table.medium-button td a:visited,
+table.large-button:hover td a,
+table.large-button:active td a,
+table.large-button td a:visited {
+  color: @buttonLinkHoverColor !important;
+}
+
+table.secondary td {
+  background: @secondButtonColor;
+  border-color: @secondButtonBorderColor;
+  color: @secondButtonTextColor;
+}
+
+table.secondary td a {
+  color: @secondButtonTextColor;
+}
+
+table.secondary:hover td {
+  background: @secondButtonHoverColor !important;
+  color: @secondButtonHoverTextColor;
+}
+
+table.secondary:hover td a,
+table.secondary td a:visited,
+table.secondary:active td a {
+  color: @secondButtonHoverTextColor !important;
+}
+
+table.success td {
+  background: @successButtonColor;
+  border-color: @successButtonBorderColor;
+  color: @successButtonTextColor;
+}
+
+table.success td a {
+  color: @successButtonTextColor;
+}
+
+table.success:hover td {
+  background: @successButtonHoverColor !important;
+  color: @successButtonTextColor;
+}
+
+table.success:hover td a,
+table.success td a:visited,
+table.success:active td a {
+  color: @successButtonTextColor !important;
+}
+
+table.alert td {
+  background: @alertButtonColor;
+  border-color: @alertButtonBorderColor;
+  color: @alertButtonTextColor;
+}
+
+table.alert td a {
+  color: @alertButtonTextColor;
+}
+
+table.alert:hover td {
+  background: @alertButtonHoverColor !important;
+  color: @alertButtonTextColor;
+}
+
+table.alert:hover td a,
+table.alert td a:visited,
+table.alert:active td a {
+  color: @alertButtonTextColor !important;
+}
+
+table.radius td {
+  .borderRadius(@borderRadius)
+}
+
+table.round td {
+  .borderRound(@borderRound)
+}

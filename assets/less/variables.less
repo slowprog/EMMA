@@ -1,0 +1,142 @@
+/* Theme Variables */
+
+/* Colors */
+/* Greys */
+@white:                 #ffffff;
+@grey:                  #cacbcc;
+@greyLight:             #e3e4e5;
+@greyLighter:           #f2f4f5;
+@greyDark:              #979899;
+@greyDarker:            #656566;
+@black:                 #2d2d2e;
+
+@primary:               #3498db;
+@primaryLight:          #36a9ef;
+@primaryDark:           #3388c7;
+
+@secondary:             #34495e;
+@secondaryLight:        #475d72;
+@secondaryDark:         #25354a;
+
+@success:               #1abc9c;
+@successDark:           #1aa88a;
+
+@alert:                 #e74c3c;
+@alertDark:             #d34b3b;
+
+/* Transparency */
+@transparent:           transparent;
+
+
+/* Page Background Color */
+@bodyBackground:        #FFC173 url("/assets/img/background.png") top center fixed repeat;// <color> <image> <position> <attachment> <repeat>
+
+/* Content Container Color */
+@containerBackground:   @white;
+
+@containerPadding:      0px;
+
+
+/* Typography */
+/* Type Setup */
+@sansFontFamily:        'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serifFontFamily:       Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+@monoFontFamily:        "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+// To contrast the base type family. Good usecase for headings for example.
+@altFontFamily:         'Oxygen', "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* Base Typography */
+@baseFontFamily:        @sansFontFamily;
+@baseFontSize:          14px;
+@baseFontWeight:        normal;
+@baseFontColor:         @greyDarker;
+@baseLineHeight:        floor(@baseFontSize * 1.45); //20px
+
+/* Text Highlight Styles */
+@textHighlightColor:    @success;
+@HighlightTextColor:    @white;
+/* Blockquotes */
+@blockquoteOffset:      50px;
+@blockquoteBorder:      2px solid @grey;
+@citationColor:         @grey;
+@citationWeight:        bold;
+/* Lead Text */
+@leadTextSize:          @fontSizeLarge;
+@leadTextLingHeight:    1.6;
+/* Paragraphs */
+@pBottomMargin:         10px;
+/* Link Styles */
+@linkColor:             @secondary;
+@linkHoverColor:        @secondaryDark;
+@headingLinkColor:      @secondary;
+@headingLinkHoverColor: @secondaryDark;
+
+/* Headings */
+@headingsFontFamily:    @altFontFamily;
+@headingsFontWeight:    300;
+@headingsColor:         @black;
+@headingsLineHeight:    1.5;
+@h1:                    40px;
+@h2:                    36px;
+@h3:                    32px;
+@h4:                    28px;
+@h5:                    24px;
+@h6:                    20px;
+
+/* Alt Type Sizes */
+@fontSizeTiny:          10px;
+@fontSizeSmall:         12px;
+@fontSizeNormal:        @baseFontSize;
+@fontSizeMedium:        16px;
+@fontSizeLarge:         18px;
+
+/* Text Padding */
+@textPadLeft:           15px;
+@textPadRight:          15px;
+
+
+/* Border Radius Styles */
+@borderRadius:          4px;
+@borderRound:           400px;
+
+
+/* Button Styles */
+// Primary Buttons
+@buttonColor:           @primary;
+@buttonHoverColor:      @primaryDark;
+@buttonSize:            100%;// % of parent table width
+@buttonBorder:          1px solid @primaryDark;
+@buttonText:            @sansFontFamily;
+@buttonWeight:          bold;
+@buttonTextColor:       @white;
+@buttonLinkColor:       @white;
+@buttonLinkHoverColor:  @white;
+
+// Secondary Buttons
+@secondButtonColor:           @secondary;
+@secondButtonBorderColor:     @secondaryDark;
+@secondButtonTextColor:       @white;
+@secondButtonHoverColor:      @secondaryDark;
+@secondButtonHoverTextColor:  @white;
+
+// Success Buttons
+@successButtonColor:          @success;
+@successButtonBorderColor:    @successDark;
+@successButtonHoverColor:     @successDark;
+@successButtonTextColor:      @white;
+
+// Alert Buttons
+@alertButtonColor:            @alert;
+@alertButtonBorderColor:      @alertDark;
+@alertButtonHoverColor:       @alertDark;
+@alertButtonTextColor:        @white;
+
+
+/* Sidebar Panel */
+@panelBackgroundColor:        @greyLighter;
+@panelBorder:                 1px solid @greyLight;
+
+
+/* hr Styles */
+@hrColor:                     @greyLight;
+@hrSize:                      1px;
