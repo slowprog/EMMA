@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+        <!-- Hammer reload -->
+          <script>
+            setInterval(function(){
+              try {
+                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
+                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
+                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
+                ws.onmessage = function(){
+                  var links = document.getElementsByTagName('link'); 
+                    for (var i = 0; i < links.length;i++) { 
+                    var link = links[i]; 
+                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
+                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
+                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
+                    }
+                  }
+                }
+              }catch(e){}
+            }, 1000)
+          </script>
+        <!-- /Hammer reload -->
+      
+
+  <link rel='stylesheet' href='assets/css/bootstrap.css'>
+<link rel='stylesheet' href='assets/css/prism.css'>
+  <script src='assets/js/jquery.js'></script>
+<script src='assets/js/html5shiv.js'></script>
+<script src='assets/js/bootstrap.min.js'></script>
+  <script src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/kvd0gki.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  <link href="assets/ico/favicon.ico" rel="shortcut icon">
+
+  <title>EMMA | HTML Email Framework</title>
+
+    <style>
+        .bodySpacing {
+            margin-top: 40px;
+        }
+        .iFrame {
+            border: solid 1px #cccccc;
+            width: 100%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        
+        @media only screen and (max-width: 960px) {
+            .if-images {
+                height: 800px!important;
+            }
+        }
+        .footer {
+            background: #2d2d2e;
+            min-height: 75px;
+            height: auto;
+            padding-top: 20px;
+            font-size: 12px;
+        }
+        .anchorFix {
+            padding-top: 40px;
+            margin-top: -40px;
+        }
+        .sideNav {
+            top: 70px;
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: #9B9B9B!important;
+        }
+    </style>
+</head>
+  <body class="bodySpacing">
+  <div class="container-fluid">
+      <header>
+          <div class="row-fluid">
+    <div class="span12">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="/index.html">EMMA</a>
+            <ul class="nav">
+                <li class="active"><a href="/index.html">Intro</a></li>
+                <li><a href="/docs.html">Docs</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+      </header>
+      <section>
+          <div class="row-fluid">
+               <div class="span3 well sideNav" data-spy="affix" data-offset-top="0">
+                   <ul class="nav nav-list">
+                       <li class="nav-header">Index</li>
+                       <li><a href="#gettingStarted">Getting Started</a></li>
+                       <li><a href="#themingEmma">Theming Emma</a></li>
+                       <li class="nav-header">Scaffolding</li>
+                       <li><a href="#theGrid">Grid</a></li>
+                       <li><a href="#subGrid">Sub-Grids</a></li>
+                       <li><a href="#blockGrid">Block-Grid</a></li>
+                       <li class="nav-header">Helpers</li>
+                       <li><a href="#utilityHelpers">Utility Classes</a></li>
+                       <li><a href="#panels">Panels</a></li>
+                       <li class="nav-header">Content</li>
+                       <li><a href="#buttons">Buttons</a></li>
+                       <li><a href="#images">Images</a></li>
+                       <li class="nav-header">Technical</li>
+                       <li><a href="#supportedClients">Supported Clients</a></li>
+                       <li><a href="#changelog">Changelog</a></li>
+                   </ul>
+               </div>
+              <div class="span8 offset3">
+              <div class="page-header">
+                  <h1>Documentation <small>Get to know Emma.</small></h1>
+              </div>
+              <a name="gettingStarted"></a>
+                  <h2 class="anchorFix">Getting Started</h2>
+                  <p class="lead">A quick & easy start to creating responsive HTML emails.</p>
+                  <h3>The Boilerplate</h3>
+                  <p>In the downloaded files you'll find a <code>boilerplate.html</code> file with the pre-setup code below to get you started quickly.</p><p>You can also just grab the code below.</p>
+                  <p>Make sure to take note of the stylesheet workflow in Emma. The Emma framework CSS file is linked into the boilerplate through the <code>&lt;link rel="stylesheet" href="assets/css/emma.css" /&gt;</code> statement.</p>
+                  <p>When you are done with your development, you have to paste the Emma CSS into the <code>&lt;head&gt;</code> area using a <code>&lt;style&gt;</code> tag. Any custom CSS styles should also be included like this.</p><p>Make sure not to include the media queries before running all of this code through an Inliner tool. After inlining all the CSS, paste the media queries back into the <code>&lt;head&gt;</code> area.</p>
+                  <p></p>
+                  <pre><code class="language-markup">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+  &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width"/&gt;
+
+    &lt;link rel="stylesheet" href="emma.css"&gt; &lt;!-- For Development Only --&gt;
+
+    &lt;style type="text/css"&gt;
+        /* Paste Emma framework CSS here before running Inliner */
+    &lt;/style&gt;
+    &lt;style type="text/css"&gt;
+        /* Your custom CSS goes here */
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;table class="body"&gt;
+        &lt;tr&gt;
+            &lt;td class="center" align="center" valign="top"&gt;
+            &lt;center&gt;
+                &lt;table class="container"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;table class="row"&gt;
+                                &lt;tr&gt;
+                                    &lt;td class="wrapper last"&gt;
+                                        &lt;table class="twelve columns"&gt;
+                                            &lt;tr&gt;
+                                                &lt;td class="panel"&gt;
+                                                .12col starter row
+                                                &lt;/td&gt;
+                                                &lt;td class="expander"&gt;&lt;/td&gt;
+                                            &lt;/tr&gt;
+                                        &lt;/table&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                            &lt;/table&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/center&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+                   </code></pre>
+                  <hr>
+                  <a name="themingEmma"></a>
+                  <h2 class="anchorFix">Theming Emma</h2>
+                  <p class="lead">Emma uses LESS to easily style all the components.</p>
+                  <h3>LESS CSS</h3>
+                  <p>When you open up the <code>variables.less</code> file in Emma's assets folder, you'll find a range of style variables that you can change as you want. Although the style variables are very intuitive to change, you will need some knowledge of the LESS CSS language or at least know how to compile the LESS files for your changes to take effect.</p>
+                  <pre class="language-markup"><code>Emma
+    assets
+        css
+        less
+            variables.less</code></pre>
+                  <h3>Style Variables</h3>
+                  <p>You can use the default styles as is to quickly mockup and layout your email to get a feel for the content and flow of your email. Afterwards, easily change the style variables to make Emma look the way you like, match it to your design or brand.</p>
+                  <pre class="language-css"><code>/* Type Setup */
+@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serifFontFamily:       Rockwell, "Courier Bold", Courier, Georgia, Times, serif;
+@monoFontFamily:        "Courier New", Courier, "Lucida Sans Typewriter", monospace;
+/* Base Typography */
+@baseFontFamily:        @sansFontFamily;
+@baseFontSize:          14px;
+@baseFontWeight:        normal;
+@baseFontColor:         @black;
+@baseLineHeight:        floor(@baseFontSize * 1.45); //20px</code></pre>
+                  <h3>Don't know LESS?</h3>
+                  <p>If you don't know how to work with LESS, you can just start using Emma as is, the basic styles are meant to give you a great looking email by default. Better yet, use one of our included templates and just add your content.</p>
+                  <hr>
+                  <a name="theGrid"></a>
+                  <h2 class="anchorFix">Grid</h2>
+                  <p class="lead">Powerful responsive layouts that simply work.</p>
+                  <h3>Structure</h3>
+                  <p>Emma is based on a 12-column grid, similar to frameworks like Bootstrap, but it has a fixed-width container of 580px (universally recommended display widths for email is 550 - 600px).</p>
+                  <h4>Emma's grid is made up of 4 main components:</h4>
+                  <h4>Containers</h4>
+                  <p>Keeps the layout wrapped to a fixed 580px width on large displays and 90% fluid width on small displays.</p>
+                  <h4>Rows</h4>
+                  <p>Creates vertical whitespace between content blocks.</p>
+                  <h4>Wrappers</h4>
+                  <p>Creates and maintains the gutters between columns.</p>
+                  <h4>Columns</h4>
+                  <p>Creates the width of each column in the 12-column grid, and contains the content.</p>
+                  <h3>The 4 grid components in code</h3>
+                  <pre><code class="language-markup">&lt;table class="container"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;table class="row"&gt;
+                &lt;tr&gt;
+                    &lt;td class="wrapper last"&gt;
+                        &lt;table class="twelve columns"&gt;
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                content in a row, 12 columns wide.
+                                &lt;/td&gt;
+                                &lt;td class="expander"&gt;&lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  <h3>Breakdown</h3>
+                  <p>These are all the main grid elements and what they do.</p>
+                  <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                          <th>Element</th>
+                          <th>Class</th>
+                          <th>Description</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td>table</td>
+                          <td>container</td>
+                          <td>Constrains content to a width of 580px and centers it. On smaller displays it becomes fluid and 90% of the display width.</td>
+                      </tr>
+                      <tr>
+                          <td>table</td>
+                          <td>row</td>
+                          <td>Separates each row of content with white space.</td>
+                      </tr>
+                      <tr>
+                          <td>td</td>
+                          <td>wrapper</td>
+                          <td>Wraps each <code>.columns</code> table, creates a gutter between columns and forces columns to expand to full width on small displays.</td>
+                      </tr>
+                      <tr>
+                          <td>td</td>
+                          <td>last</td>
+                          <td>Applied to the last <code>.wrapper</code> <code>td</code> in each row for the gutters to work properly. Even if you have only one <code>.wrapper</code> <code>td</code> in a row.</td>
+                      </tr>
+                      <tr>
+                          <td>table</td>
+                          <td>{number}</td>
+                          <td>Numbered columns, from one to twelve (spelled out). Creates the width for your <code>.columns</code> tables. Each row must contain twelve columns, including offset columns.</td>
+                      </tr>
+                      <tr>
+                          <td>table</td>
+                          <td>columns</td>
+                          <td>Columns are n-twelfths of the width of the 580px <code>.container</code> on large displays, and expand to the full-width of the <code>.container</code> on small displays.</td>
+                      </tr>
+                      <tr>
+                          <td>td</td>
+                          <td>expander</td>
+                          <td>Added after the content <code>td</code> within a <code>.columns</code> table. It's an empty and invisible element, but it allows the content <code>td</code> to expand to the full width of the <code>.container</code> on small displays.</td>
+                      </tr>
+                      </tbody>
+                  </table>
+                  <hr>
+                  <h2>Examples</h2>
+                  <h3>Even Column Layouts</h3>
+                  <p>Even column layouts are easy as pie. Use 1 <code>.twelve.columns</code>, 2 <code>.six.columns</code>, 3 <code>.four.columns</code> or 4 <code>.three.columns</code> to create your layout like below.</p>
+                  <p>On small displays the columns will stack below eachother in a one column fashion.</p>
+                  <h4>Even columns in 1, 2, 3 and 4 column variations</h4>
+                  <iframe class="iFrame" seamless="seamless" src="/even-columns.html" style="height: 220px"></iframe>
+                  <h4>Code for even columns</h4>
+                  <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="twelve columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .twelve
+                    &lt;/td&gt;
+                    &lt;td class="expander">&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;table class="row"&gt;
+    &lt;tr>
+        &lt;td class="wrapper"&gt;
+
+            &lt;table class="six columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .six
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="six columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .six
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper"&gt;
+
+            &lt;table class="four columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .four
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+        &lt;td class="wrapper"&gt;
+
+            &lt;table class="four columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .four
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="four columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .four
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper"&gt;
+
+            &lt;table class="three columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .three
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+        &lt;td class="wrapper"&gt;
+
+            &lt;table class="three columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .three
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+        &lt;td class="wrapper"&gt;
+
+            &lt;table class="three columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .three
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="three columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                    .three
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <hr>
+              <h3>Offsetting Columns</h3>
+              <p>You can move columns either left or right by using column offsets.</p>
+              <p>Apply a <code>.offset-by-{number-of-columns}</code> class to your <code>.wrapper</code> <code>&lt;td&gt;</code>.</p>
+              <h4>Offset columns</h4>
+              <iframe class="iFrame" seamless="seamless" src="/offset-columns.html" style="height: 115px"></iframe>
+              <h4>Code for Offsetting columns</h4>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="twelve columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                        Twelve Columns
+                    &lt;/td&gt;
+                    &lt;td class="expander">&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last offset-by-two"&gt;
+
+            &lt;table class="six columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                      Six Columns - Offset by Two
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <hr>
+              <h3>Fluid Width Rows</h3>
+              <p>Some designs require that the content background stretch the entire width of the display. This effect can be achieved by swapping the <code>.container</code> and <code>.row</code> around.</p>
+              <p>This works because the <code>.container</code> restricts the width to 580px, and the <code>.row</code> is 100% fluid width.</p>
+              <h4>Fluid width row</h4>
+              <iframe class="iFrame" seamless="seamless" src="/full-width-rows.html" style="height: 105px"></iframe>
+              <h4>Reverse container / row syntax</h4>
+              <pre><code class="language-markup">&lt;table class="container"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+
+            &lt;table class="row"&gt;
+                &lt;tr&gt;
+                    &lt;td class="wrapper last"&gt;
+
+                        &lt;table class="twelve columns"&gt;
+                            &lt;tr&gt;
+                                &lt;td class="panel"&gt;
+                                    Container Wrapped Row
+                                &lt;/td&gt;
+                                &lt;td class="expander"&gt;&lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;table class="row panel"&gt;&lt;!-- Styling goes on the row for the background. Row is 100% width. --&gt;
+    &lt;tr&gt;
+        &lt;td class="center" align="center"&gt;&lt;!-- Center the container --&gt;
+        &lt;center&gt;&lt;!-- Remember center tag --&gt;
+
+        &lt;table class="container"&gt;&lt;!-- Container keeps content constrained to 580px --&gt;
+            &lt;tr&gt;
+                &lt;td class="wrapper last"&gt;&lt;!-- Styling goes on the container wrappers for content background.
+                                              fixed at 580px --&gt;
+
+                    &lt;table class="twelve columns"&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;
+                                Fluid Width Row
+                            &lt;/td&gt;
+                            &lt;td class="expander"&gt;&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+
+        &lt;/center&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <hr>
+              <a name="subGrid"></a>
+              <h2 class="anchorFix">Sub-Grids</h2>
+              <p class="lead">For even more control over your layouts, use nested grids.</p>
+              <h3>Nesting Grids</h3>
+              <p>Emma gives you the ability to finely control your layouts through nestable grids called sub-grids.</p>
+              <p>By adding a <code>.sub-columns</code> class and a numbered class (exactly like normal grids) to a content <code>td</code> inside the main <code>.columns</code> <code>&lt;table&gt;</code> you can easily sub-divide the main columned row.</p>
+              <p>Just like the main grid, you have to add a <code>.last</code> class to the last <code>.sub-columns</code> <code>td</code> in the row.</p>
+              <pre><code class="language-markup">&lt;table class="container"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+
+            &lt;table class="row"&gt;
+                &lt;tr&gt;
+                    &lt;td class="wrapper"&gt;
+
+                        &lt;table class="four columns"&gt;
+                            &lt;tr&gt;
+                                &lt;td class="six sub-columns panel"&gt;
+                                    .six col
+                                &lt;/td&gt;
+                                &lt;td class="six sub-columns panel last"&gt;
+                                    .six col
+                                &lt;/td&gt;
+                                &lt;td class="expander"&gt;&lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+
+                    &lt;/td&gt;
+                    &lt;td class="wrapper last"&gt;
+
+                        &lt;table class="eight columns"&gt;
+                            &lt;tr&gt;
+                                &lt;td class="four sub-columns panel"&gt;
+                                    .four col
+                                &lt;/td&gt;
+                                &lt;td class="four sub-columns panel"&gt;
+                                    .four col
+                                &lt;/td&gt;
+                                &lt;td class="four sub-columns panel last"&gt;
+                                    .four col
+                                &lt;/td&gt;
+                                &lt;td class="expander"&gt;&lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  <h4>Nested Grids Example</h4>
+                  <iframe class="iFrame" seamless="seamless" src="/sub-grids.html" style="height: 70px"></iframe>
+              <hr>
+              <a name="blockGrid"></a>
+              <h2 class="anchorFix">Block-Grid</h2>
+              <p class="lead">Evenly sized blocks that are media query independent.</p>
+              <h3>Evenly Spaced Content</h3>
+              <p>Emma's block grid is an alternative way to layout elements when the normal grid won't do.</p>
+              <p>Block-Grid elements align left by default and push each other down to the next row as the display size gets smaller, without making use of media queries to do so.</p>
+              <p>Block-grids work slightly different from the normal grid, where you once had a <code>.row</code>, you now replace the <code>.row</code> <code>&lt;table&gt;</code> with a <code>.block-grid</code> and a numbered class to call the amount of evenly size blocks you need.</p>
+                  <p>Make sure your <code>&lt;td&gt;</code> ending and  beginning tags are stacked next to each other without spaces. Some clients render these spaces and break the grid.</p>
+              <pre><code class="language-markup">&lt;table class="container"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+
+            &lt;table class="block-grid two-up"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;
+                        two-up
+                    &lt;/td&gt;&lt;td&gt; &lt;!-- Watch out for spacing between the td tags.
+                                   Some clients render these spaces. --&gt;
+                        two-up
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+            &lt;table class="block-grid four-up"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;
+                        four-up
+                    &lt;/td&gt;&lt;td&gt; &lt;!-- no spacing between tags --&gt;
+                        four-up
+                    &lt;/td&gt;&lt;td&gt; &lt;!-- no spacing between tags --&gt;
+                        four-up
+                    &lt;/td&gt;&lt;td&gt; &lt;!-- no spacing between tags --&gt;
+                        four-up
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  <h4>Block-Grids Example</h4>
+                  <iframe class="iFrame" seamless="seamless" src="/block-grids.html" style="height: 80px"></iframe>
+                  <h3>Making Block-Grids Fluid</h3>
+                  <p>In some cases you want to use Block-Grids for content but still make them flow the same way normal grids would when it comes to mobile displays.</p>
+                  <p>In this instance you want to enable a media query to do just that.</p>
+                  <pre><code class="language-css">@media only screen and (max-width: 600px) {
+    table[class="container"] .block-grid td {
+        width: 95% !important; /* 95% to mimic the padding of the normal grid. */
+    }
+}</code></pre>
+              <hr>
+              <a name="utilityHelpers"></a>
+              <h2 class="anchorFix">Utility Helpers</h2>
+              <p class="lead">Special classes to help you do a myriad of things.</p>
+              <h3>Alignment Helpers</h3>
+                  <h4>Centering Content</h4>
+                  <p>To center content you need to apply special <code>.center</code> classes to the content you want to center.</p>
+                  <p>For text, apply a <code>.center</code> to the <code>&lt;td&gt;</code> that contains the text.</p>
+                  <p>For Images, you need to also apply a second <code>.center</code> to the actual <code>&lt;img&gt;</code>.</p>
+                  <p>And for maximum support in Outlook.com, we recommend you place the <code>&lt;center&gt;</code> tag around the actual content you wish to center.</p>
+                  <h4>Centered content columns</h4>
+                  <iframe class="iFrame" seamless="seamless" src="/centered-content.html" style="height: 170px"></iframe>
+                  <h4>Code for centered content</h4>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper"&gt;
+
+            &lt;table class="six columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel center"&gt;
+                        &lt;center&gt;
+                            Centered Text
+                        &lt;/center&gt;
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="six columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel center"&gt;
+                        &lt;center&gt;
+                        &lt;img class="center" src="http://your-awesome-image.jpg"&gt;
+                        &lt;/center&gt;
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  <hr>
+              <h4>Text Padding</h4>
+              <p>When you have columns of text, often the spacing between the columns of text become an issue. Often all you want is just more white space between text columns. In this event, use the <code>.text-pad</code>, <code>.left-text-pad</code> and <code>.right-text-pad</code> classes as you need them.</p>
+              <p>The <code>.text-pad</code> class gives you 10px of white space on both sides of content. Even though the class is named as "text padding" it works equally well on other content like images and buttons, making sure that your content doesn't flow right up against the edges of your containers.</p>
+              <p>Apply the <code>.text-pad</code> class to the <code>&lt;td&gt;</code> of a <code>.columns</code> <code>&lt;table&gt;</code>.</p>
+              <p><code>.left-text-pad</code> and <code>.right-text-pad</code> does exactly what you would expect, but note that the left only padding and right only padding applies to large displays only, when the display gets small, padding gets added to both left and right sides.</p>
+              <h4>Text Padding Example</h4>
+              <iframe class="iFrame" seamless="seamless" src="/text-padding.html" style="height: 200px"></iframe>
+                  <h4>Text Padding Code Example</h4>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last offset-by-three"&gt;
+
+            &lt;table class="six columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="text-pad"&gt;
+                        &lt;p&gt;Using .text-pad content is padded on both left and right sides.&lt;/p&gt;
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <hr>
+              <h4>Column Expanders</h4>
+              <p>Emma requires these expander <code>&lt;td&gt;</code>'s to make the grid work correctly on mobile displays.</p>
+              <p>On small displays or mobile displays, the <code>.columns</code> tables go full-width or 100% of the container and stacks vertically. Some email clients don't expand these columns properly, so the extra expander <code>td</code> is necessary to force the columns to expand to 100% or full-width of its container.</p>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="twelve columns"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;
+                        &lt;p&gt;a small amount of content.&lt;/p&gt; &lt;!-- Not enough content to push container
+                                                               open all the way on small displays --&gt;
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt; &lt;!-- Use expander to fix this problem
+                                                    and push containers full-width on small displays --&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <hr>
+              <h3>Visibility Helpers</h3>
+              <h4>Selectively show and hide content</h4>
+              <p>You can add a level of responsivity to your content by hiding or showing content on either large or small displays, by using <code>.show-for-small</code> or <code>.hide-for-small</code>.</p>
+              <p>Visibility classes can be used on any element. Outlook lacks support for visibility classes, but using them in conjunction with conditional comments ensures that the content is properly hidden or shown in Outlook 2007/2010/2013.</p>
+              <p>Note: When using a visibility class on an image, make sure to apply it to the parent element, not the image itself.</p>
+              <h4>Visibility Class Code Example</h4>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;!--[if !mso]&gt;&lt;!-- --&gt;
+            &lt;table class="twelve columns show-for-small"&gt;  &lt;!-- Only gets shown on small displays --&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;
+                        .show-for-small
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;!--&lt;![endif]--&gt;
+
+            &lt;table class="twelve columns hide-for-small"&gt;  &lt;!-- Only gets shown on large displays --&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;
+                        .hide-for-small
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <hr>
+              <a name="panels"></a>
+              <h2 class="anchorFix">Panels</h2>
+              <p class="lead">Group or highlight content with a panel.</p>
+              <p>If you need to separate content, create a sidebar or just highlight content, you can use a <code>.panel</code> class on the <code>td</code> in a <code>.columns</code> table to give it a default background color and border.</p>
+              <iframe class="iFrame" seamless="seamless" src="/panels.html" style="height: 60px"></iframe>
+              <h4>Panels Code Example</h4>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="twelve columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel"&gt;
+                        Content grouped by a panel
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <h3>Sub-Grids inside Panels</h3>
+              <p>Sometimes yu want to create a more structured layout inside a panel, to do this you need to use sub-grids.</p>
+              <p>Give the <code>td</code> of a <code>.columns</code> table a <code>.panel</code> class and a <code>.sub-grid</code> class. Only then you can add a table with <code>.sub-columns</code>.</p>
+              <h4>Sub-Grids in Panels Example Code</h4>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="twelve columns"&gt;
+                &lt;tr&gt;
+                    &lt;td class="panel sub-grid"&gt;
+
+                        &lt;table&gt;
+                            &lt;tr&gt;
+                                &lt;td class="six sub-columns"&gt;
+                                    Left Sub-Column
+                                &lt;/td&gt;
+                                &lt;td class="six sub-columns"&gt;
+                                    Right Sub-Column
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <hr>
+              <a name="buttons"></a>
+              <h2 class="anchorFix">Buttons</h2>
+              <p class="lead">Bulletproof buttons for awesome calls to action.</p>
+              <h3>Basic Buttons</h3>
+              <p>Create a button that looks great in almost every email client by using a table with a <code>.button</code> class that wraps your <code>&lt;a&gt;</code> tag.</p>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper last"&gt;
+
+            &lt;table class="twelve columns"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;
+
+                        &lt;table class="button"&gt;
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                    &lt;a href="#"&gt;Button&lt;/a&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <h3>Sizes</h3>
+              <p>Replace the default <code>.button</code> class with one of these size classes to change the button's vertical padding.</p>
+              <pre><code class="language-css">.button (same size as .small-button)
+.tiny-button
+.small-button
+.medium-button
+.large-button</code></pre>
+              <h3>Colors</h3>
+              <p>Use the different color classes to denote the purpose of each button.</p>
+              <pre><code class="language-css">none (same as .primary)
+.primary
+.secondary
+.alert
+.success</code></pre>
+              <h3>Rounded Corners</h3>
+              <p>Apply the radius classes to create a more stylish looking button in email clients that support <code>border-radius</code>.</p>
+              <pre><code class="language-css">none (no border-radius)
+.radius
+.round</code></pre>
+              <h4>Buttons Examples</h4>
+                  <iframe class="iFrame" seamless="seamless" src="/buttons.html" style="height: 490px"></iframe>
+              <hr>
+              <a name="images"></a>
+              <h2 class="anchorFix">Images</h2>
+              <p class="lead">Add awesome images (even Retina versions) to your emails.</p>
+              <h3>Correct Image Markup</h3>
+              <p>Emma loves Retina images and makes them simple to use. To use high resolution images in your email, make sure to assign a <code>height</code> and <code>width</code> attribute on the <code>&lt;img&gt;</code> tag. Be sure that your <code>width</code> attribute corresponds to one of the column sizes as indicated below.</p>
+              <p>On large displays the images will be displayed at the width of the <code>.columns</code> table and on smaller displays the images will expand to 100% width of it's parent element.</p>
+                  <h4>Image Code Markup Example</h4>
+              <pre><code class="language-markup">&lt;table class="row"&gt;
+    &lt;tr&gt;
+        &lt;td class="wrapper"&gt;
+
+            &lt;table class="three columns"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;
+
+                        &lt;img height="130" width="130" src="image-url"&gt; &lt;!-- Width attribute matching columns table --&gt;
+
+                    &lt;/td&gt;
+                    &lt;td class="expander"&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <h3>Sizing Images</h3>
+              <p>For normal resolution images, use any of the widths below to physically size your images. These images will display at exactly these sizes up to 600px wide.</p>
+              <p>For Retina Images, use whatever resolution suits your needs. Any image sized larger than 600px wide will be treated as Retina. These images will be restricted in width by the <code>.columns</code> table for larger displays and automatically fallback to their high resolution physical size and display 100% width of their parent element on small displays.</p>
+                  <p>Image height should always be set in relation to the width and carefully considered.</p>
+                  <table class="table table-bordered table-hover">
+
+                      <thead>
+                      <tr>
+                          <th>Columns</th>
+                          <th>Width (in px)</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td>1</td>
+                          <td>30</td>
+                      </tr>
+                      <tr>
+                          <td>2</td>
+                          <td>80</td>
+                      </tr>
+                      <tr>
+                          <td>3</td>
+                          <td>130</td>
+                      </tr>
+                      <tr>
+                          <td>4</td>
+                          <td>180</td>
+                      </tr>
+                      <tr>
+                          <td>5</td>
+                          <td>230</td>
+                      </tr>
+                      <tr>
+                          <td>6</td>
+                          <td>280</td>
+                      </tr>
+                      <tr>
+                          <td>7</td>
+                          <td>330</td>
+                      </tr>
+                      <tr>
+                          <td>8</td>
+                          <td>380</td>
+                      </tr>
+                      <tr>
+                          <td>9</td>
+                          <td>430</td>
+                      </tr>
+                      <tr>
+                          <td>10</td>
+                          <td>480</td>
+                      </tr>
+                      <tr>
+                          <td>11</td>
+                          <td>530</td>
+                      </tr>
+                      <tr>
+                          <td>12</td>
+                          <td>580</td>
+                      </tr>
+                      </tbody>
+                  </table>
+                  <h4>Example of how Retina and normal images resize</h4>
+                  <iframe class="iFrame if-images" seamless="seamless" src="/images.html" style="height: 150px"></iframe>
+              <hr>
+              <a name="supportedClients"></a>
+              <h2 class="anchorFix">Supported Email Clients</h2>
+              <p class="lead">We thoroughly test all major email clients for desktop and mobile.</p>
+              <h3>Outlook First Approach</h3>
+              <p>Emma takes a progressive enhancement approach to email design. Historically, Outlook has always been the 3 legged dog from hell when it comes to html email, so it makes sense to appease Outlook first before moving on to more advanced email clients. But Emma does include styles like rounded corners and background images that will look great in email clients that support them.</p>
+              <h4>Testing Clients</h4>
+              <p>We do our best to test as thoroughly as we can, and we use a specialised email testing service namely <a href="#">Email On Acid</a> to do so. Email On Acid is a world leader in email client testing, and through them we test over 70 different email client, web browser and operating system combinations, from desktop through to mobile.</p>
+              <p>While our testing is extensive, the list of supported email clients below have been chosen specifically for their market share, popularity and reliability.</p>
+                  <table class="table table-striped table-hover">
+
+                      <thead>
+                      <tr>
+                          <th>Client</th>
+                          <th>Supported</th>
+                          <th>Note</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td>Apple Mail (Desktop)</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Apple Mail (iOS)</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Outlook (2000, 2002, 2003)</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Outlook (2007, 2010, 2013)</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Outlook (2011)</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Outlook (2011 for Mac)</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Outlook.com</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Thunderbird</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Gmail (Desktop)</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Gmail (Mobile)</td>
+                          <td style="color: orange;">&check;</td>
+                          <td>Basic support, but block-grids are recommended for layout.</td>
+                      </tr>
+                      <tr>
+                          <td>AOL Mail</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>Hotmail</td>
+                          <td style="color: seagreen;">&check;</td>
+                          <td></td>
+                      </tr>
+                      </tbody>
+                      </table>
+              <hr>
+              <a name="changelog"></a>
+              <h2 class="anchorFix">Changelog</h2>
+              <p class="lead">Latest changes to Emma.</p>
+              <h3>v 1.0 - Public Release</h3>
+                  <dl>
+                      <dt>1.0.1</dt>
+                      <dd>Fixed word wrapping error in css.</dd>
+                  </dl>
+                  <dl>
+                      <dt>Initial Release - 1.0.0</dt>
+                      <dd>Grid</dd>
+                      <dd>Sub-Grid</dd>
+                      <dd>Block-Grid</dd>
+                      <dd>Utility Classes</dd>
+                      <dd>Panels</dd>
+                      <dd>Typography Setup</dd>
+                      <dd>Buttons</dd>
+                      <dd>Images</dd>
+                  </dl>
+              </div>
+          </div>
+      </section>
+  </div>
+  <footer style="margin-top: 40px">
+      <div class="row-fluid">
+          <div class="span12">
+            <div class="footer">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span8">
+                <a class="brand" href="#"><img src="/assets/img/footer-logo.svg" alt="Everlytic"></a>
+                <p style="color:#9B9B9B;">(c) 2014 Everlytic Pty Ltd. All Rights Reserved.</p>
+            </div>
+            <div class="span4 text-right">
+                <p class="social-links"><a href="#"><i class="icon-fixed-width icon-twitter"></i>@everlyticUX</a> - <a href="#"><i class="icon-fixed-width icon-github"></i>Everlytic On Github</a></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+          </div>
+      </div>
+  </footer>
+  </body>
+</html>

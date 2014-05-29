@@ -1,1 +1,155 @@
-<!-- Start -->
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+        <!-- Hammer reload -->
+          <script>
+            setInterval(function(){
+              try {
+                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
+                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
+                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
+                ws.onmessage = function(){
+                  var links = document.getElementsByTagName('link'); 
+                    for (var i = 0; i < links.length;i++) { 
+                    var link = links[i]; 
+                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
+                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
+                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
+                    }
+                  }
+                }
+              }catch(e){}
+            }, 1000)
+          </script>
+        <!-- /Hammer reload -->
+      
+
+  <link rel='stylesheet' href='assets/css/bootstrap.css'>
+  <script src='assets/js/jquery.js'></script>
+<script src='assets/js/html5shiv.js'></script>
+<script src='assets/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="//use.typekit.net/kvd0gki.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  <link href="assets/ico/favicon.ico" rel="shortcut icon">
+
+  <title>EMMA | HTML Email Framework</title>
+
+    <style>
+        .bodySpacing {
+            margin-top: 0px;
+        }
+        .footer {
+            background: #2d2d2e;
+            min-height: 75px;
+            height: auto;
+            padding-top: 20px;
+            font-size: 12px;
+        }
+        .intro-header {
+            background: url("/assets/img/background.svg") fixed center top;
+            min-height: 300px;
+            padding-top: 40px;
+            /*
+            color: #ffffff;
+            text-shadow: rgba(68, 68, 68, 0.45) 0px 2px 0px; */
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: #9B9B9B!important;
+        }
+    </style>
+</head>
+<body class="bodySpacing">
+    <div class="container-fluid">
+        <header>
+            <div class="row-fluid">
+    <div class="span12">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="/index.html">EMMA</a>
+            <ul class="nav">
+                <li class="active"><a href="/index.html">Intro</a></li>
+                <li><a href="/docs.html">Docs</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+        </header>
+
+    </div>
+    <section>
+        <div class="row-fluid intro-header">
+            <div class="span8 offset2">
+                <div class="hero-unit">
+                <h1>EMMA</h1>
+                <p class="lead">A front-end framework for creating brilliantly responsive HTML email newsletters.</p>
+                <a class="btn btn-primary btn-large">Download Emma</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6 offset3 text-center" style="margin-top: 20px">
+                <h2>Responsive Email Everywhere</h2>
+                <p class="lead">Emma makes reaching your subscribers easier than ever.</p><p>You no longer need to focus on one segment only. Let your readers receive great looking emails everywhere and anywhere. Whether they're on Desktop or Mobile, Emma delivers great results, from Outlook to Apple Mail.</p>
+            </div>
+        </div>
+
+        <div class="row-fluid" style="margin-top: 40px">
+            <div class="span10 offset2">
+                <a name="changelog"></a>
+                <h2 class="anchorFix">Changelog</h2>
+                <p class="lead">Latest changes to Emma.</p>
+                <h3>v 1.0 - Public Release</h3>
+                <dl>
+                    <dt>1.0.1</dt>
+                    <dd>Fixed word wrapping error in css.</dd>
+                </dl>
+                <dl>
+                    <dt>Initial Release - 1.0.0</dt>
+                    <dd>Grid</dd>
+                    <dd>Sub-Grid</dd>
+                    <dd>Block-Grid</dd>
+                    <dd>Utility Classes</dd>
+                    <dd>Panels</dd>
+                    <dd>Typography Setup</dd>
+                    <dd>Buttons</dd>
+                    <dd>Images</dd>
+                </dl>
+            </div>
+        </div>
+
+    </section>
+    <footer style="margin-top: 40px">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="footer">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span8">
+                <a class="brand" href="#"><img src="/assets/img/footer-logo.svg" alt="Everlytic"></a>
+                <p style="color:#9B9B9B;">(c) 2014 Everlytic Pty Ltd. All Rights Reserved.</p>
+            </div>
+            <div class="span4 text-right">
+                <p class="social-links"><a href="#"><i class="icon-fixed-width icon-twitter"></i>@everlyticUX</a> - <a href="#"><i class="icon-fixed-width icon-github"></i>Everlytic On Github</a></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+            </div>
+        </div>
+    </footer>
+  </body>
+</html>
