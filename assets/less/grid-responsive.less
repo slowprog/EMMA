@@ -11,12 +11,6 @@ table.container {
   text-align: inherit;
   background: @containerBackground;
 }
-// Extend Grid Whitespace Beyond 580px of Container Width. Breaks Block Grids if above 0px
-// TODO this doesn't work after inlining
-/* table.container > tbody > tr > td {
-  padding-left: @containerPadding;
-  padding-right: @containerPadding;
-} */
 
 table.row {
   padding: 0;
@@ -159,4 +153,12 @@ table.columns .text-pad-right,
 table.column .right-text-pad,
 table.column .text-pad-right {
   padding-right: @textPadRight;
+}
+
+.sub-grid table {
+  width: 100%;
+}
+
+.sub-grid td.sub-columns {
+  padding-bottom: 0;
 }

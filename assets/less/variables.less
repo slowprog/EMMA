@@ -1,7 +1,7 @@
-/* Theme Variables */
+// Theme Variables
 
-/* Colors */
-/* Greys */
+// Colors
+// Greys
 @white:                 #ffffff;
 @grey:                  #cacbcc;
 @greyLight:             #e3e4e5;
@@ -24,54 +24,52 @@
 @alert:                 #e74c3c;
 @alertDark:             #d34b3b;
 
-/* Transparency */
+// Transparency
 @transparent:           transparent;
 
 
-/* Page Background Color */
-@bodyBackground:        #FFC173 url("/assets/img/background.png") top center fixed repeat;// <color> <image> <position> <attachment> <repeat>
+// Page Background
+@bodyBackgroundColor:       @greyLighter;
 
-/* Content Container Color */
-@containerBackground:   @white;
-
-@containerPadding:      0px;
+// Content Container Color
+@containerBackground:       @white;
 
 
-/* Typography */
-/* Type Setup */
-@sansFontFamily:        'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-@serifFontFamily:       Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
-@monoFontFamily:        "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+// Typography
+// Type Setup
+@sansFontFamily:        Arial, sans-serif;
+@serifFontFamily:       Rockwell, Courier Bold, Courier, Georgia, Times, Times New Roman, serif;
+@monoFontFamily:        Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
 // To contrast the base type family. Good usecase for headings for example.
-@altFontFamily:         'Oxygen', "Helvetica Neue", Helvetica, Arial, sans-serif;
+@altFontFamily:         Helvetica Neue, Helvetica, Arial, sans-serif;
 
-/* Base Typography */
+// Base Typography
 @baseFontFamily:        @sansFontFamily;
 @baseFontSize:          14px;
 @baseFontWeight:        normal;
 @baseFontColor:         @greyDarker;
 @baseLineHeight:        floor(@baseFontSize * 1.45); //20px
 
-/* Text Highlight Styles */
+// Text Highlight Styles
 @textHighlightColor:    @success;
 @HighlightTextColor:    @white;
-/* Blockquotes */
+// Blockquotes
 @blockquoteOffset:      50px;
 @blockquoteBorder:      2px solid @grey;
 @citationColor:         @grey;
 @citationWeight:        bold;
-/* Lead Text */
+// Lead Text
 @leadTextSize:          @fontSizeLarge;
 @leadTextLingHeight:    1.6;
-/* Paragraphs */
+// Paragraphs
 @pBottomMargin:         10px;
-/* Link Styles */
+// Link Styles
 @linkColor:             @secondary;
 @linkHoverColor:        @secondaryDark;
 @headingLinkColor:      @secondary;
 @headingLinkHoverColor: @secondaryDark;
 
-/* Headings */
+// Headings
 @headingsFontFamily:    @altFontFamily;
 @headingsFontWeight:    300;
 @headingsColor:         @black;
@@ -83,34 +81,34 @@
 @h5:                    24px;
 @h6:                    20px;
 
-/* Alt Type Sizes */
+// Alt Type Sizes
 @fontSizeTiny:          10px;
 @fontSizeSmall:         12px;
 @fontSizeNormal:        @baseFontSize;
 @fontSizeMedium:        16px;
 @fontSizeLarge:         18px;
 
-/* Text Padding */
-@textPadLeft:           15px;
-@textPadRight:          15px;
+// Text Padding
+@textPadLeft:           10px;
+@textPadRight:          10px;
 
 
-/* Border Radius Styles */
+// Border Radius Styles
 @borderRadius:          4px;
 @borderRound:           400px;
 
 
-/* Button Styles */
+// Button Styles
 // Primary Buttons
-@buttonColor:           @primary;
-@buttonHoverColor:      @primaryDark;
-@buttonSize:            100%;// % of parent table width
-@buttonBorder:          1px solid @primaryDark;
-@buttonText:            @sansFontFamily;
-@buttonWeight:          bold;
-@buttonTextColor:       @white;
-@buttonLinkColor:       @white;
-@buttonLinkHoverColor:  @white;
+@buttonColor:                 @primary;
+@buttonHoverColor:            @primaryDark;
+@buttonSize:                  100%;// % of parent table width
+@buttonBorder:                1px solid @primaryDark;
+@buttonText:                  @sansFontFamily;
+@buttonWeight:                bold;
+@buttonTextColor:             @white;
+@buttonLinkColor:             @white;
+@buttonLinkHoverColor:        @white;
 
 // Secondary Buttons
 @secondButtonColor:           @secondary;
@@ -132,11 +130,11 @@
 @alertButtonTextColor:        @white;
 
 
-/* Sidebar Panel */
+// Sidebar Panel
 @panelBackgroundColor:        @greyLighter;
 @panelBorder:                 1px solid @greyLight;
 
 
-/* hr Styles */
+// hr Styles
 @hrColor:                     @greyLight;
 @hrSize:                      1px;

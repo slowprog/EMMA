@@ -107,12 +107,8 @@
     display: inherit !important;
   }
 
-  /* killing data tables on mobile view...here be dragons */
-  thead.dataHeading {
-    display: none !important;
+  // Optional Query to make Block Grids expand full width on mobile. Remove for normal block grid flow.
+  table[class="container"] .block-grid td {
+      width: 95% !important;
   }
-  tbody.dataTable {
-    display: none !important;
-  }
-  /* TODO - add query for Block Grids to span 95% */
 }
